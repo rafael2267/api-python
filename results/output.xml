@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180420 14:43:05.826" generator="Robot 3.0.3 (Python 2.7.12 on linux2)">
+<suite source="/home/CIT/rafaelff/PycharmProjects/component-test/challenge/robot/features" id="s1" name="Features">
+<suite source="/home/CIT/rafaelff/PycharmProjects/component-test/challenge/robot/features/POST_GET_API.robot" id="s1-s1" name="POST GET API">
+<test id="s1-s1-t1" name="1. Cenário: Post com body válido">
+<kw name="Chama a API POST válido" library="keyword_POST_GET_API">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Post_Body</arg>
+<arg>${HOST}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.978" level="INFO">Creating Session using : alias=Post_Body, url=http://localhost:8888/content, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180420 14:43:05.979" starttime="20180420 14:43:05.977"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.979" starttime="20180420 14:43:05.977"></status>
+</kw>
+<kw name="Faz o Post" library="keyword_POST_GET_API">
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>Post_Body</arg>
+<arg>${FILE_NAME}</arg>
+<arg>data=${BODY}</arg>
+</arguments>
+<assign>
+<var>${RESP}</var>
+</assign>
+<msg timestamp="20180420 14:43:05.985" level="INFO">Post Request using : alias=Post_Body, uri=test_file, data=&lt;empty&gt;, headers=None, files=None, allow_redirects=True </msg>
+<msg timestamp="20180420 14:43:05.985" level="INFO">${RESP} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.985" starttime="20180420 14:43:05.979"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta: ${RESP.status_code}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.985" level="INFO">Resposta: 200</msg>
+<status status="PASS" endtime="20180420 14:43:05.986" starttime="20180420 14:43:05.985"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESP}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.986" level="INFO">${RESP} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.986" starttime="20180420 14:43:05.986"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.986" starttime="20180420 14:43:05.979"></status>
+</kw>
+<kw name="Espera retorno 200" library="keyword_POST_GET_API">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESP.status_code}</arg>
+<arg>${STATUS_200}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.987" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.987" starttime="20180420 14:43:05.987"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.987" starttime="20180420 14:43:05.986"></status>
+</kw>
+<tags>
+<tag>post</tag>
+</tags>
+<status status="PASS" endtime="20180420 14:43:05.988" critical="yes" starttime="20180420 14:43:05.976"></status>
+</test>
+<test id="s1-s1-t2" name="2. Cenário: Post com body inválido (vazio)">
+<kw name="Chama a API POST inválido" library="keyword_POST_GET_API">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Post_Body_Invalid</arg>
+<arg>${HOST}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.989" level="INFO">Creating Session using : alias=Post_Body_Invalid, url=http://localhost:8888/content, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180420 14:43:05.989" starttime="20180420 14:43:05.989"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.990" starttime="20180420 14:43:05.989"></status>
+</kw>
+<kw name="Faz o Post do arquivo em branco" library="keyword_POST_GET_API">
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>Post_Body_Invalid</arg>
+<arg>${FILE_NAME_EMPTY}</arg>
+<arg>data=${EMPTY_BODY}</arg>
+</arguments>
+<assign>
+<var>${RESP}</var>
+</assign>
+<msg timestamp="20180420 14:43:05.993" level="INFO">Post Request using : alias=Post_Body_Invalid, uri=test_file_empty, data=&lt;empty&gt;, headers=None, files=None, allow_redirects=True </msg>
+<msg timestamp="20180420 14:43:05.993" level="INFO">${RESP} = &lt;Response [400]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.993" starttime="20180420 14:43:05.990"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta: ${RESP.status_code}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.993" level="INFO">Resposta: 400</msg>
+<status status="PASS" endtime="20180420 14:43:05.993" starttime="20180420 14:43:05.993"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESP}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.994" level="INFO">${RESP} = &lt;Response [400]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.994" starttime="20180420 14:43:05.994"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.994" starttime="20180420 14:43:05.990"></status>
+</kw>
+<kw name="Espera retorno 400" library="keyword_POST_GET_API">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESP.status_code}</arg>
+<arg>${STATUS_400}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.995" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:05.995" starttime="20180420 14:43:05.994"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.995" starttime="20180420 14:43:05.994"></status>
+</kw>
+<tags>
+<tag>post_invalido</tag>
+</tags>
+<status status="PASS" endtime="20180420 14:43:05.995" critical="yes" starttime="20180420 14:43:05.988"></status>
+</test>
+<test id="s1-s1-t3" name="3. Cenário: Get de arquivo existente">
+<kw name="Chama a API POST válido para Get" library="keyword_POST_GET_API">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Post_Body_To_Get</arg>
+<arg>${HOST}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20180420 14:43:05.997" level="INFO">Creating Session using : alias=Post_Body_To_Get, url=http://localhost:8888/content, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180420 14:43:05.997" starttime="20180420 14:43:05.996"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:05.997" starttime="20180420 14:43:05.996"></status>
+</kw>
+<kw name="Faz o Post para get" library="keyword_POST_GET_API">
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the</doc>
+<arguments>
+<arg>Post_Body_To_Get</arg>
+<arg>${FILE_NAME}</arg>
+<arg>data=${BODY}</arg>
+</arguments>
+<assign>
+<var>${RESP}</var>
+</assign>
+<msg timestamp="20180420 14:43:06.000" level="INFO">Post Request using : alias=Post_Body_To_Get, uri=test_file, data=&lt;empty&gt;, headers=None, files=None, allow_redirects=True </msg>
+<msg timestamp="20180420 14:43:06.000" level="INFO">${RESP} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.000" starttime="20180420 14:43:05.997"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.000" starttime="20180420 14:43:05.997"></status>
+</kw>
+<kw name="Chama a API Get" library="keyword_POST_GET_API">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Get_Body</arg>
+<arg>${HOST}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.001" level="INFO">Creating Session using : alias=Get_Body, url=http://localhost:8888/content, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180420 14:43:06.002" starttime="20180420 14:43:06.001"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.002" starttime="20180420 14:43:06.001"></status>
+</kw>
+<kw name="Faz o get do arquivo" library="keyword_POST_GET_API">
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>Get_Body</arg>
+<arg>${FILE_NAME}</arg>
+</arguments>
+<assign>
+<var>${RESP}</var>
+</assign>
+<msg timestamp="20180420 14:43:06.005" level="INFO">Get Request using : alias=Get_Body, uri=test_file, headers=None json=None</msg>
+<msg timestamp="20180420 14:43:06.005" level="INFO">${RESP} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.005" starttime="20180420 14:43:06.002"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta: ${RESP.text}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.006" level="INFO">Resposta: Texto para arquivo</msg>
+<status status="PASS" endtime="20180420 14:43:06.006" starttime="20180420 14:43:06.005"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESP}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.006" level="INFO">${RESP} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.006" starttime="20180420 14:43:06.006"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.007" starttime="20180420 14:43:06.002"></status>
+</kw>
+<kw name="Espera retorno do texto do arquivo" library="keyword_POST_GET_API">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESP.text}</arg>
+<arg>${RESPONSE_TEXT}</arg>
+</arguments>
+<status status="PASS" endtime="20180420 14:43:06.008" starttime="20180420 14:43:06.007"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.008" starttime="20180420 14:43:06.007"></status>
+</kw>
+<tags>
+<tag>get</tag>
+</tags>
+<status status="PASS" endtime="20180420 14:43:06.008" critical="yes" starttime="20180420 14:43:05.995"></status>
+</test>
+<test id="s1-s1-t4" name="4. Cenário: Get de arquivo inexistente">
+<kw name="Chama a API Get unexist" library="keyword_POST_GET_API">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Get_Body_Unexist</arg>
+<arg>${HOST}</arg>
+<arg>disable_warnings=1</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.009" level="INFO">Creating Session using : alias=Get_Body_Unexist, url=http://localhost:8888/content, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180420 14:43:06.010" starttime="20180420 14:43:06.009"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.010" starttime="20180420 14:43:06.009"></status>
+</kw>
+<kw name="Faz o get do arquivo inexistente" library="keyword_POST_GET_API">
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>Get_Body_Unexist</arg>
+<arg>${FILE_NAME_UNEXIST}</arg>
+</arguments>
+<assign>
+<var>${RESP}</var>
+</assign>
+<msg timestamp="20180420 14:43:06.012" level="INFO">Get Request using : alias=Get_Body_Unexist, uri=test_file_unexist, headers=None json=None</msg>
+<msg timestamp="20180420 14:43:06.013" level="INFO">${RESP} = &lt;Response [404]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.013" starttime="20180420 14:43:06.010"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Resposta: ${RESP.status_code}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.013" level="INFO">Resposta: 404</msg>
+<status status="PASS" endtime="20180420 14:43:06.013" starttime="20180420 14:43:06.013"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${RESP}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.014" level="INFO">${RESP} = &lt;Response [404]&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.014" starttime="20180420 14:43:06.013"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.014" starttime="20180420 14:43:06.010"></status>
+</kw>
+<kw name="Espera retorno 400 para inexistente" library="keyword_POST_GET_API">
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${RESP.status_code}</arg>
+<arg>${STATUS_404}</arg>
+</arguments>
+<msg timestamp="20180420 14:43:06.015" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180420 14:43:06.015" starttime="20180420 14:43:06.014"></status>
+</kw>
+<status status="PASS" endtime="20180420 14:43:06.015" starttime="20180420 14:43:06.014"></status>
+</kw>
+<tags>
+<tag>get_inexistente</tag>
+</tags>
+<status status="PASS" endtime="20180420 14:43:06.015" critical="yes" starttime="20180420 14:43:06.008"></status>
+</test>
+<doc>Consulta api python</doc>
+<status status="PASS" endtime="20180420 14:43:06.016" starttime="20180420 14:43:05.843"></status>
+</suite>
+<status status="PASS" endtime="20180420 14:43:06.017" starttime="20180420 14:43:05.827"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="4">Critical Tests</stat>
+<stat fail="0" pass="4">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">get</stat>
+<stat fail="0" pass="1">get_inexistente</stat>
+<stat fail="0" pass="1">post</stat>
+<stat fail="0" pass="1">post_invalido</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Features" pass="4">Features</stat>
+<stat fail="0" id="s1-s1" name="POST GET API" pass="4">Features.POST GET API</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

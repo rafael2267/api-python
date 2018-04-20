@@ -15,6 +15,7 @@ class Text(tornado.web.RequestHandler):
             self.write(file_object.read())
 
             file_object.close()
+            self.set_status(200)
         else:
             self.set_status(404)
             self.finish("Error 404")
@@ -31,6 +32,7 @@ class Text(tornado.web.RequestHandler):
         file_object.write(str(body))
 
         file_object.close()
+        self.set_status(200)
 
 
 application = tornado.web.Application([
