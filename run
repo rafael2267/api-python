@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd api
+python3 TornadoWeb.py &
+cd ..
+robot -d results robot/features/
